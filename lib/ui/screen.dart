@@ -117,7 +117,7 @@ class _MirrorButtonScreenState extends State<MirrorButtonScreen> {
                         fit: BoxFit.cover,
                         child: ImageFiltered(
                           imageFilter:
-                              ImageFilter.blur(sigmaX: 0.0, sigmaY: 0.0),
+                              ImageFilter.blur(sigmaX: 2.5, sigmaY: 2.5),
                           child: ColorFiltered(
                             colorFilter: ColorFilter.mode(
                                 Colors.grey.withOpacity(0.6), BlendMode.color),
