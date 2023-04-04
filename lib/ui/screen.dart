@@ -90,69 +90,69 @@ class _MirrorButtonScreenState extends State<MirrorButtonScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Mirror Button App"),
-          backgroundColor: Colors.teal,
-        ),
-        body: Center(
-          child: Card(
-            elevation: 15,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(60),
-              ),
+      appBar: AppBar(
+        title: const Text("Mirror Button App"),
+        backgroundColor: Colors.teal,
+      ),
+      body: Center(
+        child: Card(
+          elevation: 15,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(60),
             ),
-            child: SizedBox(
-              width: 280,
-              height: 80,
-              child: Stack(
-                alignment: Alignment.center,
-                fit: StackFit.expand,
-                children: [
-                  ClipRRect(
-                    borderRadius: const BorderRadius.all(Radius.circular(60)),
-                    child: OverflowBox(
-                      alignment: Alignment.center,
-                      child: FittedBox(
-                        fit: BoxFit.cover,
-                        child: ImageFiltered(
-                          imageFilter:
-                              ImageFilter.blur(sigmaX: 2.5, sigmaY: 2.5),
-                          child: ColorFiltered(
-                            colorFilter: ColorFilter.mode(
-                                Colors.grey.withOpacity(0.6), BlendMode.color),
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(60),
-                                ),
+          ),
+          child: SizedBox(
+            width: 280,
+            height: 80,
+            child: Stack(
+              alignment: Alignment.center,
+              fit: StackFit.expand,
+              children: [
+                ClipRRect(
+                  borderRadius: const BorderRadius.all(Radius.circular(60)),
+                  child: OverflowBox(
+                    alignment: Alignment.center,
+                    child: FittedBox(
+                      fit: BoxFit.cover,
+                      child: ImageFiltered(
+                        imageFilter: ImageFilter.blur(sigmaX: 2.5, sigmaY: 2.5),
+                        child: ColorFiltered(
+                          colorFilter: ColorFilter.mode(
+                              Colors.grey.withOpacity(0.6), BlendMode.color),
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(60),
                               ),
-                              width: 280,
-                              height: 280,
-                              child: _isCameraInitialized
-                                  ? controller!.buildPreview()
-                                  : Container(),
                             ),
+                            width: 280,
+                            height: 280,
+                            child: _isCameraInitialized
+                                ? controller!.buildPreview()
+                                : Container(),
                           ),
                         ),
                       ),
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Button',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          color: Colors.grey[600],
-                          letterSpacing: 1.2),
-                      textScaleFactor: 1.8,
-                    ),
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Button',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        color: Colors.grey[600],
+                        letterSpacing: 1.2),
+                    textScaleFactor: 1.8,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
