@@ -127,7 +127,7 @@ class _MirrorButtonScreenState extends State<MirrorButtonScreen> {
                                 ),
                               ),
                               width: 280,
-                              height: 80,
+                              height: 180,
                               child: _isCameraInitialized
                                   ? controller!.buildPreview()
                                   : Container(),
