@@ -96,7 +96,7 @@ class _MirrorButtonScreenState extends State<MirrorButtonScreen> {
         ),
         body: Center(
           child: Card(
-            elevation: 10,
+            elevation: 15,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(
                 Radius.circular(60),
