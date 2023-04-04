@@ -92,6 +92,7 @@ class _MirrorButtonScreenState extends State<MirrorButtonScreen> {
     return Scaffold(
         appBar: AppBar(
           title: const Text("Mirror Button App"),
+          backgroundColor: Colors.teal,
         ),
         body: Center(
           child: Card(
@@ -127,7 +128,7 @@ class _MirrorButtonScreenState extends State<MirrorButtonScreen> {
                                 ),
                               ),
                               width: 280,
-                              height: 180,
+                              height: 280,
                               child: _isCameraInitialized
                                   ? controller!.buildPreview()
                                   : Container(),
@@ -142,9 +143,9 @@ class _MirrorButtonScreenState extends State<MirrorButtonScreen> {
                     child: Text(
                       'Button',
                       style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey[600],
-                      ),
+                          fontWeight: FontWeight.w700,
+                          color: Colors.grey[600],
+                          letterSpacing: 1.2),
                       textScaleFactor: 1.8,
                     ),
                   ),
