@@ -68,7 +68,6 @@ class _MirrorButtonScreenState extends State<MirrorButtonScreen> {
       });
       // Set and initialize the new camera
       onNewCameraSelected(widget.cameras[1]);
-      // refreshAlreadyCapturedImages();
     } else {
       print('Camera Permission: DENIED');
       getPermissionStatus();
