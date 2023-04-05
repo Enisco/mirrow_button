@@ -83,72 +83,93 @@ class _MirrorButtonScreenState extends State<MirrorButtonScreen> {
 
   @override
   void dispose() {
-    controller?.dispose();
+    // controller?.dispose();
     super.dispose();
+  }
+
+  bool pressed = false;
+  void switchPress() {
+    setState(() {
+      pressed = !pressed;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Mirror Button App"),
-        backgroundColor: Colors.teal,
-      ),
+      backgroundColor: Colors.grey[300],
+      // appBar: AppBar(
+      //   title: const Text("Mirror Button App"),
+      //   backgroundColor: Colors.teal,
+      // ),
       body: Center(
-        child: Card(
-          elevation: 15,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(60),
+        child: GestureDetector(
+          onTapUp: (details) => switchPress(),
+          onTapDown: (details) => switchPress(),
+          child: Card(
+            elevation: pressed ? 0 : 12,
+            shadowColor: Colors.black,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(45),
+              ),
             ),
-          ),
-          child: SizedBox(
-            width: 280,
-            height: 80,
-            child: Stack(
-              alignment: Alignment.center,
-              fit: StackFit.expand,
-              children: [
-                ClipRRect(
-                  borderRadius: const BorderRadius.all(Radius.circular(60)),
-                  child: OverflowBox(
-                    alignment: Alignment.center,
-                    child: FittedBox(
-                      fit: BoxFit.cover,
-                      child: ImageFiltered(
-                        imageFilter: ImageFilter.blur(sigmaX: 2.5, sigmaY: 2.5),
-                        child: ColorFiltered(
-                          colorFilter: ColorFilter.mode(
-                              Colors.grey.withOpacity(0.6), BlendMode.color),
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(60),
-                              ),
+            child: SizedBox(
+              width: pressed ? 272 : 280,
+              height: pressed ? 85 : 90,
+              child: Stack(
+                alignment: Alignment.center,
+                fit: StackFit.expand,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(45),
+                    child: OverflowBox(
+                      alignment: Alignment.center,
+                      child: FittedBox(
+                        fit: BoxFit.cover,
+                        child: ImageFiltered(
+                          imageFilter:
+                              ImageFilter.blur(sigmaX: 0.5, sigmaY: 0.5),
+                          child: ColorFiltered(
+                            colorFilter: ColorFilter.mode(
+                              // fromHex('#C0C0C0').withOpacity(0.4),
+                              Colors.grey.withOpacity(0.6),
+                              BlendMode.color,
                             ),
-                            width: 280,
-                            height: 280,
-                            child: _isCameraInitialized
-                                ? controller!.buildPreview()
-                                : Container(),
+                            child: SizedBox(
+                              width: 280,
+                              height: 280,
+                              child: _isCameraInitialized
+                                  ? controller!.buildPreview()
+                                  : Container(),
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    'Button',
-                    style: TextStyle(
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Button',
+                      style: TextStyle(
+                        fontSize: 12,
                         fontWeight: FontWeight.w700,
                         color: Colors.grey[600],
-                        letterSpacing: 1.2),
-                    textScaleFactor: 1.8,
+                        letterSpacing: 1.0,
+                      ),
+                      textScaleFactor: 1.8,
+                    ),
                   ),
-                ),
-              ],
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(45),
+                      color: Colors.yellow.withOpacity(0.05),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),
@@ -156,3 +177,21 @@ class _MirrorButtonScreenState extends State<MirrorButtonScreen> {
     );
   }
 }
+
+Color fromHex(String hexString) {
+  final buffer = StringBuffer();
+  if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
+  buffer.write(hexString.replaceFirst('#', ''));
+  return Color(int.parse(buffer.toString(), radix: 16));
+}
+
+
+                            // shaderCallback: (Rect bounds) {
+                            //   return LinearGradient(
+                            //     // colors: [Colors.blue, Colors.red],
+                            //     colors: [
+                            //       fromHex('#C0C0C0'),
+                            //       fromHex('#C0C0C0')
+                            //     ],
+                            //   ).createShader(bounds);
+                            // },
