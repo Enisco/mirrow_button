@@ -23,6 +23,7 @@ class _MirrorButtonScreenState extends State<MirrorButtonScreen> {
     final previousCameraController = controller;
     // Instantiating the camera controller
     final CameraController cameraController = CameraController(
+      enableAudio: false,
       cameraDescription,
       ResolutionPreset.high,
       imageFormatGroup: ImageFormatGroup.jpeg,
@@ -185,13 +186,12 @@ Color fromHex(String hexString) {
   return Color(int.parse(buffer.toString(), radix: 16));
 }
 
-
-                            // shaderCallback: (Rect bounds) {
-                            //   return LinearGradient(
-                            //     // colors: [Colors.blue, Colors.red],
-                            //     colors: [
-                            //       fromHex('#C0C0C0'),
-                            //       fromHex('#C0C0C0')
-                            //     ],
-                            //   ).createShader(bounds);
-                            // },
+// shaderCallback: (Rect bounds) {
+//   return LinearGradient(
+//     // colors: [Colors.blue, Colors.red],
+//     colors: [
+//       fromHex('#C0C0C0'),
+//       fromHex('#C0C0C0')
+//     ],
+//   ).createShader(bounds);
+// },
