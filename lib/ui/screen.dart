@@ -23,6 +23,7 @@ class _MirrorButtonScreenState extends State<MirrorButtonScreen> {
     final previousCameraController = controller;
     // Instantiating the camera controller
     final CameraController cameraController = CameraController(
+      enableAudio: false,
       cameraDescription,
       ResolutionPreset.high,
       imageFormatGroup: ImageFormatGroup.jpeg,
@@ -63,9 +64,11 @@ class _MirrorButtonScreenState extends State<MirrorButtonScreen> {
     var status = await Permission.camera.status;
     if (status.isGranted) {
       print('Camera Permission: GRANTED');
-      setState(() {
-        _isCameraPermissionGranted = true;
-      });
+      // setState(() {
+      //   _isCameraPermissionGranted = true;
+      // });
+      _isCameraPermissionGranted = true;
+
       // Set and initialize the new camera
       onNewCameraSelected(widget.cameras[1]);
     } else {
@@ -96,9 +99,9 @@ class _MirrorButtonScreenState extends State<MirrorButtonScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    // Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: const Color(0xffe0e0e0),
       // appBar: AppBar(
       //   title: const Text("Mirror Button App"),
       //   backgroundColor: Colors.teal,
@@ -109,7 +112,7 @@ class _MirrorButtonScreenState extends State<MirrorButtonScreen> {
           onTapDown: (details) => switchPress(),
           child: Card(
             elevation: pressed ? 0 : 12,
-            shadowColor: Colors.black,
+            shadowColor: const Color(0xff000000),
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(
                 Radius.circular(45),
@@ -132,9 +135,9 @@ class _MirrorButtonScreenState extends State<MirrorButtonScreen> {
                           imageFilter:
                               ImageFilter.blur(sigmaX: 0.5, sigmaY: 0.5),
                           child: ColorFiltered(
-                            colorFilter: ColorFilter.mode(
+                            colorFilter: const ColorFilter.mode(
                               // fromHex('#C0C0C0').withOpacity(0.4),
-                              Colors.grey.withOpacity(0.6),
+                              Color(0x999e9e9e),
                               BlendMode.color,
                             ),
                             child: SizedBox(
@@ -149,14 +152,14 @@ class _MirrorButtonScreenState extends State<MirrorButtonScreen> {
                       ),
                     ),
                   ),
-                  Align(
+                  const Align(
                     alignment: Alignment.center,
                     child: Text(
                       'Button',
                       style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w700,
-                        color: Colors.grey[600],
+                        color: Color(0xff757575),
                         letterSpacing: 1.0,
                       ),
                       textScaleFactor: 1.8,
@@ -165,7 +168,7 @@ class _MirrorButtonScreenState extends State<MirrorButtonScreen> {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(45),
-                      color: Colors.yellow.withOpacity(0.05),
+                      color: const Color(0x0Dffeb3b),
                     ),
                   )
                 ],
@@ -185,13 +188,12 @@ Color fromHex(String hexString) {
   return Color(int.parse(buffer.toString(), radix: 16));
 }
 
-
-                            // shaderCallback: (Rect bounds) {
-                            //   return LinearGradient(
-                            //     // colors: [Colors.blue, Colors.red],
-                            //     colors: [
-                            //       fromHex('#C0C0C0'),
-                            //       fromHex('#C0C0C0')
-                            //     ],
-                            //   ).createShader(bounds);
-                            // },
+// shaderCallback: (Rect bounds) {
+//   return LinearGradient(
+//     // colors: [Colors.blue, Colors.red],
+//     colors: [
+//       fromHex('#C0C0C0'),
+//       fromHex('#C0C0C0')
+//     ],
+//   ).createShader(bounds);
+// },
