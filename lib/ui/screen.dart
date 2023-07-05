@@ -64,9 +64,11 @@ class _MirrorButtonScreenState extends State<MirrorButtonScreen> {
     var status = await Permission.camera.status;
     if (status.isGranted) {
       print('Camera Permission: GRANTED');
-      setState(() {
-        _isCameraPermissionGranted = true;
-      });
+      // setState(() {
+      //   _isCameraPermissionGranted = true;
+      // });
+      _isCameraPermissionGranted = true;
+
       // Set and initialize the new camera
       onNewCameraSelected(widget.cameras[1]);
     } else {
